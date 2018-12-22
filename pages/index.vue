@@ -46,9 +46,11 @@ export default {
   methods: {
     submit() {
       console.log(this.text)
+      const host = process.env.HOST || '127.0.0.1'
+      const port = process.env.PORT || 3000
       if (this.$refs.form.validate()) {
         axios
-          .post('/api', { text: this.text })
+          .post(`http://${host}:${port}/api`, { text: this.text })
           .then((res) => {
             console.log(res)
             this.after = res.data.text
