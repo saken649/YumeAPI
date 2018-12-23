@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+    container_name: yumegen-app
+    ports:
+      - "80:80"
+    command: ["nohup", "npm", "start", "&"]
