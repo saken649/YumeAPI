@@ -5,7 +5,15 @@ const app = express.Router()
 const MeCab = new require('mecab-async')
   , mecab = new MeCab()
 ;
-mecab.command = 'mecab -d /usr/lib64/mecab/dic/mecab-ipadic-neologd'
+
+// mecab path
+if (process.env.NODE_ENV === 'production') {
+  mecab.command = 'mecab -d /usr/lib64/mecab/dic/mecab-ipadic-neologd'
+} else {
+  // local
+  mecab.command = 'mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd'
+}
+console.log(mecab.command)
 
 const bodyParser = require('body-parser')
 const Enumerable = require('linq')
