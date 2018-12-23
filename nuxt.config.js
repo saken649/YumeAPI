@@ -50,7 +50,7 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    port: 3000
+    // port: 3000
   },
 
   /*

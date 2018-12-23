@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express.Router()
+const fs = require('fs')
 
 // yume api
 const MeCab = new require('mecab-async')
@@ -7,12 +8,32 @@ const MeCab = new require('mecab-async')
 ;
 
 // mecab path
-if (process.env.NODE_ENV === 'production') {
-  mecab.command = 'mecab -d /usr/lib64/mecab/dic/mecab-ipadic-neologd'
+let mecabBase = 'mecab -d '
+let mecabPath = ''
+const mecabLib64 = '/usr/lib64/mecab/dic/mecab-ipadic-neologd'
+if (process.env.MECAB !== undefined) {
+  mecabPath = process.env.MECAB
 } else {
-  // local
-  mecab.command = 'mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd'
+  try {
+    fs.statSync(mecabLib64)
+    mecabPath = mecabLib64
+  } catch (e) {
+    if (e.code === 'ENOENT') {
+      mecabPath = '/usr/local/lib/mecab/dic/mecab-ipadic-neologd'
+    }
+  }
 }
+// if (process.env.NODE_ENV === 'production') {
+//   if (process.env.MECAB !== undefined) {
+//     mecabPath = process.env.MECAB
+//   } else {
+//     mecabPath = '/usr/lib64/mecab/dic/mecab-ipadic-neologd'
+//   }
+// } else {
+//   // local
+//   mecabPath = '/usr/local/lib/mecab/dic/mecab-ipadic-neologd'
+// }
+mecab.command = `${mecabBase}${mecabPath}`
 console.log(mecab.command)
 
 const bodyParser = require('body-parser')
