@@ -25,5 +25,5 @@ RUN npm install \
  && npm run build
 
 # after build
-ENV PORT=80
+ENV PORT=$PORT
 CMD nohup npm start &
