@@ -21,9 +21,9 @@ RUN git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git \
 
 # build
 WORKDIR /home/work/yumegen/
+ENV PORT=$PORT
 RUN npm install \
  && npm run build
 
 # after build
-ENV PORT=$PORT
 CMD nohup npm start &
