@@ -52,8 +52,7 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
     port: process.env.PORT,
-    baseURL: (process.env.MODE === 'prod') ? 'https://yumegen.herokuapp.com' : 'http://localhost:3000',
-    // port: process.env.PORT
+    baseURL: (process.env.MODE === 'prod') ? 'https://yumegen.herokuapp.com' : 'http://localhost:3000'
   },
 
   /*

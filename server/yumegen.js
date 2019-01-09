@@ -23,16 +23,6 @@ if (process.env.MECAB !== undefined) {
     }
   }
 }
-// if (process.env.NODE_ENV === 'production') {
-//   if (process.env.MECAB !== undefined) {
-//     mecabPath = process.env.MECAB
-//   } else {
-//     mecabPath = '/usr/lib64/mecab/dic/mecab-ipadic-neologd'
-//   }
-// } else {
-//   // local
-//   mecabPath = '/usr/local/lib/mecab/dic/mecab-ipadic-neologd'
-// }
 mecab.command = `${mecabBase}${mecabPath}`
 console.log(mecab.command)
 

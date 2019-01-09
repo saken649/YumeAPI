@@ -47,10 +47,6 @@ export default {
     submit() {
       console.log(this.text)
       if (this.$refs.form.validate()) {
-        // const protocol = location.protocol
-        // const host = location.hostname
-        // const baseURL = `${protocol}//${host}`
-        // console.log(baseURL)
         this.$axios.$post('/api', { text: this.text })
                    .then((res) => {
                      console.log(res)
